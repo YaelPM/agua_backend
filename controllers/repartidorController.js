@@ -40,6 +40,24 @@ const verPedidosRepartidor = (req, res) => {
         }
     })
 }
+const verRepartidor = (req, res) => {
+    idRepartidor = req.params.idRepartidor
+    repartidorModel.verRepartidor(idRepartidor, (data) => {
+        if (data != null) {
+            res.send({
+                status: true,
+                message: 'Repartidor obtenido correctamente',
+                data: data
+            })
+        } else {
+            res.send({
+                status: false,
+                message: 'No se pudo obtener el repartidor',
+                errorMessage: data
+            })
+        }
+    })
+}
 const obtenerRepartidores = (req, res) => {
     repartidorModel.obtenerRepartidores((data) => {
         if (data == null) {
@@ -66,5 +84,6 @@ const obtenerRepartidores = (req, res) => {
 module.exports = {
     registrarRepartidor,
     obtenerRepartidores,
-    verPedidosRepartidor
+    verPedidosRepartidor,
+    verRepartidor
 }

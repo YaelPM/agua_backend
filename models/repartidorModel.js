@@ -33,4 +33,14 @@ module.exports = {
             }
         });
     },
+    verRepartidor: (idRepartidor, callback) => {
+        let sql = 'SELECT * FROM repartidor WHERE idRepartidor = ?';
+        bd.query(sql, idRepartidor, (err, data) => {
+            if (err || data.length === 0) {
+                return callback(null);
+            } else {
+                return callback(data[0]);
+            }
+        });
+    },
 }
