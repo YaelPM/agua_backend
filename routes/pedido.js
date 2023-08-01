@@ -8,5 +8,6 @@ router.put('/cambiarEstado', pedidoController.cambiarEstado)
 router.put('/asignarPedido', pedidoController.asignarPedido)
 router.get('/verDetallePedido/:idPedido', pedidoController.verDetallePedido)
 router.get('/verPedidosPorEstado/:estado', pedidoController.verPedidosPorEstado)
+router.get('/getAllPedidos', pedidoController.getAllPedidos)
 
 module.exports = router;

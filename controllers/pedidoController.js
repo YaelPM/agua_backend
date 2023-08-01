@@ -11,7 +11,8 @@ const realizarPedido = (req, res) => {
         colonia: req.body.colonia,
         codigoPostal: req.body.codigoPostal,
         numeroTelefono: req.body.numeroTelefono,
-        tipoPago: req.body.tipoPago
+        tipoPago: req.body.tipoPago,
+        total: req.body.total
     }
     pedidoModel.realizarPedido(pedido, (data) => {
         console.log(data.insertId)
@@ -72,6 +73,7 @@ const cambiarEstado = (req, res) => {
 const asignarPedido = (req, res) => {
     idRepartidor = req.body.idRepartidor
     idPedido = req.body.idPedido
+    console.log(idRepartidor, idPedido)
     pedidoModel.asignarPedido(idPedido, idRepartidor, (data) => {
         try {
             res.send({
@@ -106,6 +108,23 @@ const verDetallePedido = (req, res) => {
         }
     })
 }
+const getAllPedidos = (req, res) => {
+    pedidoModel.getAllPedidos((data) => {
+        if (data != null) {
+            res.send({
+                status: true,
+                message: 'Se han obtenido los pedidos exitosamente',
+                data: data
+            })
+        } else {
+            res.send({
+                status: false,
+                message: 'No hay datos',
+                errorMessage: 'Error'
+            })
+        }
+    })
+}
 const verPedidosPorEstado = (req, res) => {
     estado = req.params.estado
     pedidoModel.verPedidosPorEstado(estado, (data) => {
@@ -130,5 +149,6 @@ module.exports = {
     cambiarEstado,
     verDetallePedido,
     asignarPedido,
-    verPedidosPorEstado
+    verPedidosPorEstado,
+    getAllPedidos
 }

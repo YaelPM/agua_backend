@@ -88,9 +88,47 @@ const actualizarContrasenia = (req, res) => {
         }
     })
 }
+const verPedidosCliente = (req, res) => {
+    idCliente = req.params.idCliente
+    clientModel.verPedidosCliente(idCliente, (data) => {
+        if (data != null) {
+            res.send({
+                status: true,
+                message: 'Pedidos del cliente obtenidos correctamente',
+                data: data
+            })
+        } else {
+            res.send({
+                status: false,
+                message: 'No hay pedidos aún',
+                errorMessage: data
+            })
+        }
+    })
+}
+const verDetallesCliente = (req, res) => {
+    idCliente = req.params.idCliente
+    clientModel.verDetallesCliente(idCliente, (data) => {
+        if (data != null) {
+            res.send({
+                status: true,
+                message: 'Detalles del cliente obtenidos correctamente',
+                data: data
+            })
+        } else {
+            res.send({
+                status: false,
+                message: 'No existe el cliente',
+                errorMessage: data
+            })
+        }
+    })
+}
 module.exports = {
     iniciarSesion,
     registrarCliente,
     editarPerfil,
-    actualizarContrasenia
+    actualizarContrasenia,
+    verPedidosCliente,
+    verDetallesCliente
 }

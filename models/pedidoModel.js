@@ -57,6 +57,17 @@ module.exports = {
             }
         });
     },
+    getAllPedidos: (callback) => {
+        let sql = 'SELECT * FROM pedido';
+        bd.query(sql, (err, data) => {
+            if (err || data.length === 0) {
+                return callback(null);
+            } else {
+                console.log(data);
+                return callback(data);
+            }
+        });
+    },
     verPedidosPorEstado: (estado, callback) => {
         let sql = 'SELECT * FROM pedido WHERE estado = ?';
         bd.query(sql, estado, (err, data) => {

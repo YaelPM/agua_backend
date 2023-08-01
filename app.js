@@ -10,6 +10,7 @@ var clienteRouter = require('./routes/cliente');
 var pedidoRouter = require('./routes/pedido');
 var repartidorRouter = require('./routes/repartidor');
 var administradorRouter = require('./routes/administrador');
+var estadosRouter = require('./routes/estados');
 
 var cors = require('cors')
 
@@ -32,6 +33,7 @@ app.use('/clientes', clienteRouter);
 app.use('/pedidos', pedidoRouter);
 app.use('/repartidores', repartidorRouter);
 app.use('/administrador', administradorRouter);
+app.use('/estados', estadosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

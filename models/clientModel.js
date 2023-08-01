@@ -42,4 +42,24 @@ module.exports = {
                 return callback(data)
         })
     },
+    verPedidosCliente: (idCliente, callback) => {
+        let sql = 'SELECT * FROM pedido WHERE idCliente = ?';
+        bd.query(sql, idCliente, (err, data) => {
+            if (err || data.length === 0) {
+                return callback(null);
+            } else {
+                return callback(data);
+            }
+        });
+    },
+    verDetallesCliente: (idCliente, callback) => {
+        let sql = 'SELECT * FROM cliente WHERE idCliente = ?';
+        bd.query(sql, idCliente, (err, data) => {
+            if (err || data.length === 0) {
+                return callback(null);
+            } else {
+                return callback(data[0]);
+            }
+        });
+    },
 }
